@@ -17,7 +17,6 @@ export const App = () => {
 
   const [filter, setFilter] = useState('')
 
-
   const handleFormSubmit = profile => {
     const nameToCheck = profile.name.toLocaleLowerCase()
     const isIncludeName = contacts.some(contact => contact.name.toLocaleLowerCase() === nameToCheck)
