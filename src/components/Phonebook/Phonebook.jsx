@@ -1,72 +1,67 @@
 import React from "react";
 import css from './PhoneBook.module.css'
 import shortid from "shortid";
+import { useState } from "react";
 
-class PhoneBook extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-           
-            name: '',
-            number: '',
+
+export const PhoneBook = ({ onFormSubmit }) => {
+
+    const [name, setName] = useState('')
+    const [number, setNumber] = useState('')
+
+    const nameInputId = shortid.generate()
+    const numberInputId = shortid.generate()
+
+    const handleInputChange = e => {
+        const { name, value } = e.target
+
+        switch (name) {
+            case 'name':
+                setName(value)
+                break
+
+            case 'number':
+                setNumber(value)
+                break
+
+            default:
+                return
         }
     }
-    nameInputId = shortid.generate()
-    numberInputId = shortid.generate()
 
-    handleChangeForm = ({ target }) => {
-        const { name, value } = target
-        this.setState({ [name]: value })
-    }
-
-    handleFormSubmit = (e) => {
+    const handleFormSubmit = (e) => {
         e.preventDefault()
-        const { name, number } = this.state
-        const { onAdd } = this.props
-        const isValidaterForm = this.validateForm()
 
-        if (!isValidaterForm) return
-        onAdd({ id: shortid.generate(), name, number })
-        this.resetForm()
+        const profile = { id: shortid.generate(), name, number }
+
+        onFormSubmit(profile)
+        resetForm()
     }
 
-    validateForm = () => {
-        const { name, number } = this.state
-        const { onCheckUnique } = this.props
-        if (!name || !number) {
-            
-            return false
-        }
-        return onCheckUnique(name)
-
-    }
-    resetForm = () => {
-        this.setState({
-            name: '',
-            number: ''
-        })
-    }
-   
-    render() {
-        const { name, number } = this.state
-        return <form className={css.form} onSubmit={this.handleFormSubmit}>
-            <label className={css.label} htmlFor={this.nameInputId}>
-                Name
-                <input type="text"
-                    name="name"
-                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                    title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                    required id={this.nameInputId} value={name} onChange={this.handleChangeForm} /></label>
-            <label className={css.label} htmlFor={this.numberInputId}>
-                Number
-                <input type="tel"
-                    name="number"
-                    pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                    title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                    required id={this.numberInputId} value={number} onChange={this.handleChangeForm} /></label>
-            <button className={css.btn} type="submit">Add contact</button>
-        </form>
+    const resetForm = () => {
+        setName('')
+        setNumber('')
     }
 
+    return <form className={css.form} onSubmit={handleFormSubmit}>
+        <label className={css.label} htmlFor={nameInputId}>
+            Name
+            <input type="text"
+                name="name"
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                required id={nameInputId} value={name} onChange={handleInputChange}
+            />
+        </label>
+        <label className={css.label} htmlFor={numberInputId}>
+            Number
+            <input type="tel"
+                name="number"
+                pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                required id={numberInputId} value={number} onChange={handleInputChange}
+            />
+        </label>
+        <button className={css.btn} type="submit">Add contact</button>
+    </form>
 }
-export default PhoneBook

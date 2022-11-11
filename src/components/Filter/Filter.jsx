@@ -1,6 +1,6 @@
 import css from '../Phonebook/PhoneBook.module.css'
 
-const Filter = ({filter, onChange}) => {
-return <input className={css.input} type="text" name="filter" value={filter} onChange={({target}) => onChange(target.value)}/>
+const Filter = ({value, onChange}) => {
+return <input className={css.input} type="text" name="filter" value={value} onChange={onChange}/>
 }
 export default Filter
