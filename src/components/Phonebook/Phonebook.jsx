@@ -3,7 +3,7 @@ import shortid from "shortid";
 import { useState } from "react";
 
 
-export const PhoneBook = ({ onFormSubmit }) => {
+const PhoneBook = ({ onFormSubmit }) => {
 
     const [name, setName] = useState('')
     const [number, setNumber] = useState('')
@@ -64,3 +64,4 @@ export const PhoneBook = ({ onFormSubmit }) => {
         <button className={css.btn} type="submit">Add contact</button>
     </form>
 }
+export default PhoneBook

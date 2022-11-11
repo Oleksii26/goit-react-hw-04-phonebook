@@ -1,4 +1,3 @@
-
 import css from './PhoneBook.module.css'
 
 const ContactListItem = ({ id, name, number, onRemove }) => {
@@ -9,11 +8,13 @@ const ContactListItem = ({ id, name, number, onRemove }) => {
 }
 
 
-export const ContactList = ({ contacts, onRemove }) => {
+const ContactList = ({ contacts, onRemove }) => {
     if (contacts.length === 0) { return null }
     return (
         <ul className={css.list}> {contacts.map(contact => <ContactListItem {...contact} onRemove={onRemove} />)}</ul>
     )
 
 }
+export default ContactList
+
 
