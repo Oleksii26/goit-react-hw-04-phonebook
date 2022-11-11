@@ -9,7 +9,7 @@ const ContactListItem = ({ id, name, number, onRemove }) => {
 }
 
 
-const ContactList = ({ contacts, onRemove }) => {
+export const ContactList = ({ contacts, onRemove }) => {
     if (contacts.length === 0) { return null }
     return (
         <ul className={css.list}> {contacts.map(contact => <ContactListItem {...contact} onRemove={onRemove} />)}</ul>
@@ -17,4 +17,3 @@ const ContactList = ({ contacts, onRemove }) => {
 
 }
 
-export default ContactList

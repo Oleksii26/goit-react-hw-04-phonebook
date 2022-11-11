@@ -1,5 +1,5 @@
-import ContactList from "./Phonebook/ContactList";
-import Filter from "./Filter/Filter";
+import { ContactList } from "./Phonebook/ContactList";
+import { Filter } from "./Filter/Filter";
 import { useState, useEffect, useMemo } from "react";
 import { PhoneBook } from "./Phonebook/PhoneBook";
 

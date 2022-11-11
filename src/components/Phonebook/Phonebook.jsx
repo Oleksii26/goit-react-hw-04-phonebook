@@ -1,4 +1,3 @@
-import React from "react";
 import css from './PhoneBook.module.css'
 import shortid from "shortid";
 import { useState } from "react";
