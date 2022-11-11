@@ -1,7 +1,7 @@
 import  ContactList  from "./Phonebook/ContactList";
 import Filter from "./Filter/Filter";
 import { useState, useEffect, useMemo } from "react";
-import  PhoneBook  from "./Phonebook/PhoneBook";
+import  PhoneBook  from "./Phonebook/Phonebook";
 
 const initContacts = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
