@@ -49,7 +49,7 @@ export const App = () => {
   }, [contacts])
 
   return <div>
-    <PhoneBook onAdd={() => setContacts()} onFormSubmit={handleFormSubmit} />
+    <PhoneBook onFormSubmit={handleFormSubmit} />
     <Filter value={filter} onChange={handleFilterChange} />
     <ContactList contacts={getVisibleContacts} onRemove={handleRemoveContact} />
   </div >
